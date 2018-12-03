@@ -1,24 +1,27 @@
-import turtle
+#define function part
 
-wn_bg=input("Input pop-up windows color: ")
-tess_color=input("Input tess color: ")
-pen_size=int(input("Input pen size: "))
+def count(ls):
+    even=0
+    odd=0
 
-wn=turtle.Screen()
-wn.bgcolor(wn_bg)
-wn.title("Hello, Tess! ")
+    for i in lst:
+        if i%2==0:
+            even+=1
+        else:
+            odd+=1
+    return even,odd
 
-tess=turtle.Turtle()
-tess.color(tess_color)
-tess.pensize(pen_size)
+#input part
 
-tess.forward(120)
-tess.left(90)
-tess.forward(60)
-tess.left(90)
-tess.forward(120)
-tess.left(90)
-tess.forward(60)
+lst=[]
+n=int(input("How many numbers you want to input? "))
+print("Enter {} numbers:".format(n))
+for i in range(n):
+    a=int(input())
+    lst.append(a)
 
+#calc part
 
-wn.mainloop()
+even,odd=count(lst)
+
+print('Even: {} and Odd: {}'.format(even,odd))
