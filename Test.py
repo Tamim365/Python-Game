@@ -1,27 +1,23 @@
-#define function part
+from functools import reduce
 
-def count(ls):
-    even=0
-    odd=0
+def add_all (a,b):
+    return a+b
 
-    for i in lst:
-        if i%2==0:
-            even+=1
-        else:
-            odd+=1
-    return even,odd
-
-#input part
-
-lst=[]
+nums=[]
 n=int(input("How many numbers you want to input? "))
 print("Enter {} numbers:".format(n))
 for i in range(n):
     a=int(input())
-    lst.append(a)
+    nums.append(a)
 
-#calc part
+evens = list(filter(lambda n : n%2==0,nums))
 
-even,odd=count(lst)
+doubles = list(map(lambda n: n*2,evens))
 
-print('Even: {} and Odd: {}'.format(even,odd))
+sum = reduce(lambda a,b:a+b,doubles)
+
+print(evens)
+
+print(doubles)
+
+print(sum)
