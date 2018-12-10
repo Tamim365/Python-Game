@@ -1,23 +1,24 @@
-from functools import reduce
+import turtle
 
-def add_all (a,b):
-    return a+b
+def sqr_multi_color(t,sz):
+    for i in ["red","black","yellow","hotpink"]:
+        t.color(i)
+        t.forward(sz)
+        t.left(90)
 
-nums=[]
-n=int(input("How many numbers you want to input? "))
-print("Enter {} numbers:".format(n))
-for i in range(n):
-    a=int(input())
-    nums.append(a)
+wn=turtle.Screen()
+wn.bgcolor('light green')
 
-evens = list(filter(lambda n : n%2==0,nums))
+tess=turtle.Turtle()
+tess.pensize(3)
 
-doubles = list(map(lambda n: n*2,evens))
 
-sum = reduce(lambda a,b:a+b,doubles)
+size=20
 
-print(evens)
+for i in range(15):
+    sqr_multi_color(tess ,size)
+    size=size+10
+    tess.forward(10)
+    tess.right(10)
 
-print(doubles)
-
-print(sum)
+wn.mainloop()
