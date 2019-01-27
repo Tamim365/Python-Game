@@ -5,8 +5,8 @@ wn.bgcolor('Light Green')
 
 tess=Turtle()
 
-for i in range(6):
-    tess.forward(50)
-    tess.left(60)
+for i in range(8):
+    tess.forward(100)
+    tess.left(45)
 
 wn.mainloop()
