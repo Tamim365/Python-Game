@@ -43,46 +43,60 @@ atel.setposition(random.randint(-220, 220), random.randint(-220, 220))
 
 #setting score and speed
 score=0
-speed=float(1)
+speed=float(0)
 score_pen = turtle.Turtle()
+score_pen.hideturtle()
 score_pen.speed(500)
 def Score ():
     score_pen.undo()
-    score_pen.hideturtle()
     score_pen.penup()
     score_pen.setposition(-240, 260)
     score_string = "Score: %s" % score
     score_pen.write(score_string, False, align="left", font=("Arial", 14, "bold"))
 
-#move player (Credit:stackoverflow)
-def travel():
-    gtnm.forward(speed)
-    wn.ontimer(travel, 10)
+#start info
+start_pen = turtle.Turtle()
+start_pen.hideturtle()
+start_pen.speed(500)
+def StartInfo ():
+    start_pen.undo()
+    start_pen.penup()
+    start_pen.setposition(-50, 260)
+    start_string = "Press 'Space' to Start a New Game!"
+    start_pen.write(start_string, True, align="left", font=("Arial", 12, "normal"))
 
+#newgame
+StartInfo()
+def newgame():
+    global speed,score
+    speed = float(1)
+    score = 0
+    start_pen.undo()
+    gtnm.home()
+    atel.setposition(random.randint(-220, 220), random.randint(-220, 220))
+    Score()
+
+#move player (Credit:stackoverflow)
 wn.onkey(lambda: gtnm.setheading(90), 'Up')
 wn.onkey(lambda: gtnm.setheading(180), 'Left')
 wn.onkey(lambda: gtnm.setheading(0), 'Right')
 wn.onkey(lambda: gtnm.setheading(270), 'Down')
-
+wn.onkey(newgame,"space")
 wn.listen()
 
-travel()
 
 #player speed and position
 while True:
+    
     gtnm.forward(speed)
 
     #check border touch
     if (gtnm.xcor() <= -235 or gtnm.xcor() >= 235):
-        gtnm.home()
-        score=0
-        speed = float(1)
-        Score()
+        speed = float(0)
+        StartInfo()
     if (gtnm.ycor() <= -235 or gtnm.ycor() >= 235):
-        gtnm.home()
-        score=0
-        speed = float(1)
-        Score()
+        speed = float(0)
+        StartInfo()
     #crashing
     distance=math.sqrt(math.pow(gtnm.xcor() - atel.xcor(), 2) + math.pow(gtnm.ycor() - atel.ycor(), 2))
     #distance --> direct straight line formula xD
